@@ -1,0 +1,1 @@
+# woocommerce-promoted-product
