@@ -53,6 +53,11 @@ function wcpp_settings( $settings, $current_section ) {
 			'class'    => 'wcpp-settings-color',
 		);
 
+		$seller_settings[] = array(
+			'type' => 'sectionend',
+			'id' => 'wcpp_settings'
+		);
+
 		return $seller_settings;
 	} else {
 		return $settings;
