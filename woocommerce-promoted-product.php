@@ -10,3 +10,17 @@
  * Domain Path: /languages/
  *
  */
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+// Test to see if WooCommerce is active (including network activated).
+$WooCommerce_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce/woocommerce.php';
+if (
+	in_array( $WooCommerce_path, wp_get_active_and_valid_plugins() )
+	|| in_array( $WooCommerce_path, wp_get_active_network_plugins() )
+) {
+	/*
+	 * Create settings tab.
+	 */
+	include_once(untrailingslashit(dirname(__FILE__)) . '/includes/settings.php');
+}
