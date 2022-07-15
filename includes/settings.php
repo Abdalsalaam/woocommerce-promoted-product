@@ -63,3 +63,16 @@ function wcpp_settings( $settings, $current_section ) {
 		return $settings;
 	}
 }
+
+/**
+ * Enqueue Color Picker Scripts
+ */
+add_action( 'admin_enqueue_scripts', 'wcpp_add_color_picker' );
+function wcpp_add_color_picker( $hook ) {
+	if( is_admin() ) {
+		// Add the color picker css file
+		wp_enqueue_style( 'wp-color-picker' );
+		// Include our custom jQuery file with WordPress Color Picker dependency
+		wp_enqueue_script( 'wcpp-script', plugins_url( '/js/wcpp.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+	}
+}
