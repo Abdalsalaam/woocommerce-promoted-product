@@ -19,7 +19,7 @@ add_action( 'woocommerce_process_product_meta', 'wcpp_save_fields', 10, 2 );
 function wcpp_save_fields( $id ){
 	// is Promoted?
 	if(isset($_POST['_wcpp_promoted']) && $_POST['_wcpp_promoted'] == 'yes'){
-		//First delete all prievies promoted products
+		//First delete all previews promoted products
 		global $wpdb;
 		$wpdb->query( "DELETE FROM ".$wpdb->postmeta." WHERE meta_key = '_wcpp_promoted'" );
 		update_post_meta( $id, '_wcpp_promoted', sanitize_text_field($_POST['_wcpp_promoted']));
