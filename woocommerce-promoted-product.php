@@ -23,4 +23,16 @@ if (
 	 * Create settings tab.
 	 */
 	include_once(untrailingslashit(dirname(__FILE__)) . '/includes/settings.php');
+
+	/*
+	 * Functions and actions
+	 */
+	include_once(untrailingslashit(dirname(__FILE__)) . '/includes/functions.php');
+
+	/*
+	 * Load the plugin.
+	 */
+	include_once(untrailingslashit(dirname(__FILE__)) . '/includes/promoted_product.php');
+
+	$promoted_product = new promoted_product();
 }
