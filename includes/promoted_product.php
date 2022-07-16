@@ -32,7 +32,7 @@ class promoted_product{
 		global $wpdb;
 		$promoted_product = $wpdb->get_results( "SELECT post_id FROM ".$wpdb->postmeta." WHERE meta_key = '_wcpp_promoted' AND meta_value = 'yes'",ARRAY_A);
 		if(!empty($promoted_product)){
-			return $promoted_product[0];
+			return $promoted_product[0]['post_id'];
 		} else {
 			return false;
 		}
