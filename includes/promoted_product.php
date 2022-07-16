@@ -1,6 +1,9 @@
 <?php
 class promoted_product{
 	function __construct(){
+		/*
+		 * Product general fields tab.
+		 */
 		add_action( 'woocommerce_product_options_general_product_data', function (){
 			echo '<div class="options_group">';
 			// is Promoted?
@@ -22,6 +25,18 @@ class promoted_product{
 			);
 			echo '</div>';
 		} );
+
+		/*
+		 * Display promoted product above header
+		 */
+		add_action( 'wp_body_open', function (){
+			$promoted_product_data = $this->get_data();
+			$background_color = get_option( 'wcpp_settings_bg_color' );
+			$text_color = get_option( 'wcpp_settings_text_color' );
+			if(!is_null($promoted_product_data)){
+				echo '<div style="text-align: center; background: '.$background_color.';"><a style="color : '.$text_color.' ;" href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].'</a></div>';
+			}
+		});
 	}
 
 	/**
