@@ -56,8 +56,8 @@ class promoted_product{
 		if ($product_id)
 			return array(
 				'title' => $this->get_title( $product_id ),
-				'bg_color' => get_post_meta( $product_id, '_wcpp_bg_color', true ),
-				'text_color' => get_post_meta( $product_id, '_wcpp_text_color', true ),
+				'bg_color'   => get_option( 'wcpp_settings_bg_color' ),
+				'text_color' => get_option( 'wcpp_settings_text_color' ),
 				'link' => get_permalink( $product_id )
 			);
 		else
