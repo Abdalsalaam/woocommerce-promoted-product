@@ -18,13 +18,19 @@ function wcpp_settings( $settings, $current_section ) {
 	 **/
 	if ( $current_section == 'wcpp' ) {
 		$seller_settings = array();
-
 		// Add Title to the Settings
+		$promoted_product = new promoted_product();
+		$promoted_product_data = $promoted_product->get_data();
+		if(!is_null($promoted_product_data))
+			$current_product = '<a href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].'</a>';
+		else
+			$current_product = 'No active promoted product';
+
 		$seller_settings[] = array(
 			'name' => __( 'Promoted Product Settings :', 'WCPP' ),
 			'type' => 'title',
-			'desc' => __( '#', 'WCPP' ),
-			'id' => 'wcpp_settings'
+			'desc' => $current_product,
+			'id'   => 'wcpp_settings'
 		);
 
 		/*
