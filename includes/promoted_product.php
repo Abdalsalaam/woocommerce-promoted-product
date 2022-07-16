@@ -14,7 +14,7 @@ class promoted_product{
 			// Custom title
 			woocommerce_wp_text_input(
 				array(
-					'id'                => '_download_expiry',
+					'id'                => '_wcpp_title',
 					'value'             => get_post_meta( get_the_ID(), '_wcpp_title', true ),
 					'label'             => __( 'Custom title', 'WCPP' ),
 					'description'       => __( 'If empty the product title will displayed.', 'woocommerce' )
