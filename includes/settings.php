@@ -22,7 +22,7 @@ function wcpp_settings( $settings, $current_section ) {
 		$promoted_product = new promoted_product();
 		$promoted_product_data = $promoted_product->get_data();
 		if(!is_null($promoted_product_data))
-			$current_product = '<a href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].'</a>';
+			$current_product = '<a href="'.admin_url('post.php?post='.$promoted_product_data['id'].'&action=edit').'">'.$promoted_product_data['title'].'</a>';
 		else
 			$current_product = 'No active promoted product';
 

@@ -70,6 +70,7 @@ class promoted_product{
 		$product_id = $this->get_id();
 		if ($product_id)
 			return array(
+				'id'    => $product_id,
 				'title' => $this->get_title( $product_id ),
 				'bg_color'   => get_option( 'wcpp_settings_bg_color' ),
 				'text_color' => get_option( 'wcpp_settings_text_color' ),
