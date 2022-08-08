@@ -32,7 +32,7 @@ class promoted_product{
 		add_action( 'wp_body_open', function (){
 			$promoted_product_data = $this->get_data();
 			if(!is_null($promoted_product_data)){
-				echo '<div style="text-align: center; background: '.$promoted_product_data['bg_color'].';"><a style="color : '.$promoted_product_data['text_color'].' ;" href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].'</a></div>';
+				echo '<div style="text-align: center; background: '.$promoted_product_data['bg_color'].';"><a style="color : '.$promoted_product_data['label'].' ;" href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].' : '.$promoted_product_data['title'].'</a></div>';
 			}
 		});
 	}
@@ -70,6 +70,7 @@ class promoted_product{
 			return array(
 				'id'    => $product_id,
 				'title' => $this->get_title( $product_id ),
+				'label' => get_option( 'wcpp_settings_title' ),
 				'bg_color'   => get_option( 'wcpp_settings_bg_color' ),
 				'text_color' => get_option( 'wcpp_settings_text_color' ),
 				'link' => get_permalink( $product_id )
