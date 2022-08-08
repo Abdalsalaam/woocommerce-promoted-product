@@ -23,6 +23,15 @@ class promoted_product{
 					'description'       => __( 'If empty the product title will displayed.', 'woocommerce' )
 				)
 			);
+
+			// Expire date
+			woocommerce_wp_text_input(
+				array(
+					'id'                => '_wcpp_expire_date',
+					'value'             => get_post_meta( get_the_ID(), '_wcpp_expire_date', true ),
+					'label'             => __( 'Expire date', 'WCPP' )
+				)
+			);
 			echo '</div>';
 		} );
 
@@ -60,13 +69,27 @@ class promoted_product{
 			return get_the_title( $product_id );
 	}
 
+	//check if promoted product valid
+	private function check_date( $product_id ){
+		$expire_date = get_post_meta( $product_id, '_wcpp_expire_date', true );
+		$current_date = date('Y-m-d H:i');
+
+		if($expire_date < $current_date){
+			//Delete promotion
+			delete_post_meta( $product_id, '_wcpp_promoted' );
+			return false; // expired
+		}
+		else
+			return true; // valid
+	}
+
 	/**
 	 * Get promoted product data
 	 * @return array|null
 	 */
 	public function get_data(){
 		$product_id = $this->get_id();
-		if ($product_id)
+		if ($product_id && $this->check_date( $product_id ))
 			return array(
 				'id'    => $product_id,
 				'title' => $this->get_title( $product_id ),
