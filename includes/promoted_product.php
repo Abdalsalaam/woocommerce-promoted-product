@@ -56,7 +56,7 @@ class promoted_product{
 	public function get_id(){
 		global $wpdb;
 		$promoted_product = $wpdb->get_results( "SELECT post_id FROM ".$wpdb->postmeta." WHERE meta_key = '_wcpp_promoted' AND meta_value = 'yes'",ARRAY_A);
-		if(!empty($promoted_product)){
+		if(!empty($promoted_product) && $this->check_date( $promoted_product[0]['post_id'] )){
 			return $promoted_product[0]['post_id'];
 		} else {
 			return false;
@@ -92,7 +92,7 @@ class promoted_product{
 	 */
 	public function get_data(){
 		$product_id = $this->get_id();
-		if ($product_id && $this->check_date( $product_id ))
+		if ($product_id)
 			return array(
 				'id'    => $product_id,
 				'title' => $this->get_title( $product_id ),
