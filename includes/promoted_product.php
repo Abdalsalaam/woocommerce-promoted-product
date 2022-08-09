@@ -38,12 +38,15 @@ class promoted_product{
 		/*
 		 * Display promoted product above header
 		 */
-		add_action( 'wp_body_open', function (){
-			$promoted_product_data = $this->get_data();
-			if(!is_null($promoted_product_data)){
-				echo '<div style="text-align: center; background: '.$promoted_product_data['bg_color'].';"><a style="color : '.$promoted_product_data['label'].' ;" href="'.$promoted_product_data['link'].'">'.$promoted_product_data['title'].' : '.$promoted_product_data['title'].'</a></div>';
+		add_action(
+			'wp_body_open',
+			function() {
+				$promoted_product_data = $this->get_data();
+				if ( ! is_null( $promoted_product_data ) ) {
+					echo '<div style="text-align: center; background: ' . esc_attr( $promoted_product_data['bg_color'] ) . ';"><a style="color : ' . esc_attr( $promoted_product_data['text_color'] ) . ' ;" href="' . esc_url( $promoted_product_data['link'] ) . '">' . esc_html( $promoted_product_data['label'] ) . ' ' . esc_html( $promoted_product_data['title'] ) . '</a></div>';
+				}
 			}
-		});
+		);
 	}
 
 	/**
