@@ -2,7 +2,7 @@
 /**
  * Enqueue Color Picker Scripts
  */
-add_action( 'admin_enqueue_scripts', 'wcpp_add_color_picker' );
+add_action( 'admin_enqueue_scripts', 'wcpp_add_assets' );
 
 /**
  * Add assets to admin.
@@ -11,13 +11,12 @@ add_action( 'admin_enqueue_scripts', 'wcpp_add_color_picker' );
  *
  * @return void
  */
-function wcpp_add_color_picker( $hook ) {
+function wcpp_add_assets( $hook ) {
 	if ( 'post-new.php' === $hook || 'post.php' === $hook ) {
 		global $post;
 		if ( 'product' !== $post->post_type ) {
 			return;
 		}
-
 
 		/*
 		* flatpickr.
