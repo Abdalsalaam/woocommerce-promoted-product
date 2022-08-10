@@ -30,9 +30,10 @@ add_filter( 'woocommerce_get_settings_products', 'wcpp_settings', 10, 2 );
  * @return array
  */
 function wcpp_settings( $settings, $current_section ) {
+
 	/**
-	 * Check the current section is what we want
-	 */
+	 * Early exit if not on the WCPP section.
+	*/
 	if ( 'wcpp' !== $current_section ) {
 		return $settings;
 	}
