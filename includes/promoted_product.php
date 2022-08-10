@@ -94,9 +94,9 @@ class Promoted_Product {
 		$title = get_post_meta( $product_id, '_wcpp_title', true );
 		if ( $title && '' !== $title ) {
 			return $title;
-		} else {
-			return get_the_title( $product_id );
 		}
+
+		return get_the_title( $product_id );
 	}
 
 	/**
@@ -113,9 +113,9 @@ class Promoted_Product {
 			// Delete promotion.
 			delete_post_meta( $product_id, '_wcpp_promoted' );
 			return false; // expired.
-		} else {
-			return true; // valid.
 		}
+
+		return true; // valid.
 	}
 
 
@@ -126,17 +126,18 @@ class Promoted_Product {
 	 */
 	public function get_data() {
 		$product_id = $this->get_id();
-		if ( $product_id ) {
-			return array(
-				'id'         => $product_id,
-				'title'      => $this->get_title( $product_id ),
-				'label'      => get_option( 'wcpp_settings_title' ),
-				'bg_color'   => get_option( 'wcpp_settings_bg_color' ),
-				'text_color' => get_option( 'wcpp_settings_text_color' ),
-				'link'       => get_permalink( $product_id ),
-			);
-		} else {
+
+		if ( ! $product_id ) {
 			return null;
 		}
+
+		return array(
+			'id'         => $product_id,
+			'title'      => $this->get_title( $product_id ),
+			'label'      => get_option( 'wcpp_settings_title' ),
+			'bg_color'   => get_option( 'wcpp_settings_bg_color' ),
+			'text_color' => get_option( 'wcpp_settings_text_color' ),
+			'link'       => get_permalink( $product_id ),
+		);
 	}
 }
